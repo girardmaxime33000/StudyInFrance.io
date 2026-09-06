@@ -3,7 +3,16 @@
 Information portal, info-product shop, coaching booking platform, and affiliate directory for
 Indian students and young professionals moving to France.
 
-## Stack
+This repository holds two separate things:
+
+- **`docs/`** — a static showcase site (no backend, Stripe Payment Links
+  pasted in manually), deployable to GitHub Pages today. See
+  [Static showcase site (GitHub Pages)](#static-showcase-site-github-pages) below.
+- **`src/`** — the full Next.js application (shop, coaching bookings,
+  accounts, webhooks) for later, deployable to Vercel. See
+  [Deployment (Vercel)](#deployment-vercel) below.
+
+## Stack (full application, `src/`)
 
 - Next.js 14 (App Router) + TypeScript + Tailwind CSS + shadcn/ui
 - Prisma + PostgreSQL
@@ -38,6 +47,29 @@ The booking form must include a hidden field named `bookingId` prefilled with
 the internal `Booking.id` (passed as a query param from
 `/coaching/booking-confirmed`) so the webhook can match the Cal.com booking
 back to the Stripe-paid `Booking` row.
+
+## Static showcase site (GitHub Pages)
+
+`docs/` is a standalone, dependency-free static site (plain HTML/CSS/JS) —
+a showcase/landing page, separate from the Next.js app described below.
+It has no backend: purchases and bookings go through Stripe Payment Links
+you paste in yourself.
+
+**Enable GitHub Pages**: repo Settings → Pages → Source: "Deploy from a
+branch" → Branch: `main`, folder `/docs` → Save. The site is then served at
+`https://<owner>.github.io/StudyInFrance.io/` (or your custom domain, once
+attached under the same Pages settings).
+
+**Add your Stripe links**: open `docs/index.html` and search for
+`REPLACE_WITH_YOUR_LINK` (3 occurrences, one per pricing card). Replace each
+`href` with the corresponding Stripe Payment Link
+(Stripe Dashboard → Payment Links → Create link). For the coaching card, if
+booking needs a calendar step, either use a Stripe link that redirects to
+your Calendly/Cal.com page after payment, or point the button directly at
+that booking link instead.
+
+**Edit content**: everything else (copy, prices, testimonials, FAQ) is
+plain markup in `docs/index.html` — no build step, edit and push.
 
 ## Deployment (Vercel)
 
