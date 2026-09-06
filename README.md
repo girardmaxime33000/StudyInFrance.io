@@ -60,16 +60,31 @@ branch" → Branch: `main`, folder `/docs` → Save. The site is then served at
 `https://<owner>.github.io/StudyInFrance.io/` (or your custom domain, once
 attached under the same Pages settings).
 
-**Add your Stripe links**: open `docs/index.html` and search for
-`REPLACE_WITH_YOUR_LINK` (3 occurrences, one per pricing card). Replace each
-`href` with the corresponding Stripe Payment Link
-(Stripe Dashboard → Payment Links → Create link). For the coaching card, if
-booking needs a calendar step, either use a Stripe link that redirects to
-your Calendly/Cal.com page after payment, or point the button directly at
-that booking link instead.
+**Add your Stripe links**: open `docs/index.html` (and its French twin,
+`docs/fr/index.html`) and search for `REPLACE_WITH_YOUR_LINK` (3 occurrences
+per file, one per pricing card). Replace each `href` with the corresponding
+Stripe Payment Link (Stripe Dashboard → Payment Links → Create link). For
+the coaching card, if booking needs a calendar step, either use a Stripe
+link that redirects to your Calendly/Cal.com page after payment, or point
+the button directly at that booking link instead.
+
+**Languages**: `docs/index.html` (English) and `docs/fr/index.html`
+(French) are two independent, hand-translated pages sharing the same
+`assets/` (CSS, JS, images) — there's no i18n framework or build step. Each
+page links to the other via the EN/FR toggle in the header. Edit both when
+copy, prices, or FAQ content changes — nothing keeps them in sync
+automatically.
+
+**Illustrations**: the hero, service icons, section divider, step icons,
+testimonial avatars, and CTA accent are all hand-authored inline SVG
+(`docs/index.html` / `docs/fr/index.html` directly, no separate image
+files) — crisp at any size, on-brand by construction, zero extra requests.
+Drop real photography into `docs/assets/img/` and reference it with an
+`<img>` tag if you'd rather use photos for the hero or testimonials later.
 
 **Edit content**: everything else (copy, prices, testimonials, FAQ) is
-plain markup in `docs/index.html` — no build step, edit and push.
+plain markup in `docs/index.html` / `docs/fr/index.html` — no build step,
+edit and push.
 
 ## Deployment (Vercel)
 
