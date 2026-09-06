@@ -51,40 +51,91 @@ back to the Stripe-paid `Booking` row.
 ## Static showcase site (GitHub Pages)
 
 `docs/` is a standalone, dependency-free static site (plain HTML/CSS/JS) —
-a showcase/landing page, separate from the Next.js app described below.
-It has no backend: purchases and bookings go through Stripe Payment Links
+a showcase site, separate from the Next.js app described below. It has no
+backend: purchases and coaching bookings go through Stripe Payment Links
 you paste in yourself.
+
+**Pages**:
+
+```
+docs/
+├── index.html                          Home (EN)
+├── resources/
+│   ├── index.html                      Resources hub (EN)
+│   ├── campus-france.html
+│   ├── vfs-visa-appointments.html
+│   ├── caf-application.html
+│   └── housing-without-guarantor.html
+├── contact/index.html                  Contact & booking (EN)
+└── fr/                                 Same structure, French
+    ├── index.html
+    ├── resources/…
+    └── contact/index.html
+```
 
 **Enable GitHub Pages**: repo Settings → Pages → Source: "Deploy from a
 branch" → Branch: `main`, folder `/docs` → Save. The site is then served at
 `https://<owner>.github.io/StudyInFrance.io/` (or your custom domain, once
 attached under the same Pages settings).
 
-**Add your Stripe links**: open `docs/index.html` (and its French twin,
-`docs/fr/index.html`) and search for `REPLACE_WITH_YOUR_LINK` (3 occurrences
-per file, one per pricing card). Replace each `href` with the corresponding
-Stripe Payment Link (Stripe Dashboard → Payment Links → Create link). For
-the coaching card, if booking needs a calendar step, either use a Stripe
-link that redirects to your Calendly/Cal.com page after payment, or point
-the button directly at that booking link instead.
+**Before publishing, fill in three placeholders** (search each string
+across `docs/`, they appear on every page):
 
-**Languages**: `docs/index.html` (English) and `docs/fr/index.html`
-(French) are two independent, hand-translated pages sharing the same
-`assets/` (CSS, JS, images) — there's no i18n framework or build step. Each
-page links to the other via the EN/FR toggle in the header. Edit both when
-copy, prices, or FAQ content changes — nothing keeps them in sync
-automatically.
+- `REPLACE_WITH_YOUR_LINK` — Stripe Payment Link `href`s (5 per home page:
+  4 info-product packs + coaching). Stripe Dashboard → Payment Links →
+  Create link.
+- `wa.me/33600000000` — the floating WhatsApp button and the Contact
+  page's WhatsApp link. Replace with your real WhatsApp Business number,
+  international format, digits only (e.g. `wa.me/919876543210`).
+- `SIRET [YOUR SIRET NUMBER]` / `[Legal entity name]` / `[Street
+  address]` — the trust badge footnote (footer, every page) and the
+  Contact page's legal info card. These are placeholders on purpose: do
+  not publish invented values — fill in your real registration once you
+  have one. Presenting a fabricated SIRET or "registered in France" claim
+  without an actual entity is a legal exposure, not a copy detail.
+
+**Currency toggle (EUR/INR)**: every price carries `data-eur` and
+`data-inr` attributes; the EUR/INR buttons in the pricing section swap
+which one displays, with a stated reference rate. This is display only —
+Stripe checkout always charges in EUR, and the page says so next to the
+toggle and in a FAQ entry. To update the reference rate or amounts, edit
+the `data-inr` values directly (search `data-inr=` in the home pages) —
+there's no live FX lookup.
+
+**Eligibility checker**: a 4-question client-side quiz (`#eligibility` on
+the home page) that recommends a pack/guide based on the answers — no
+data is sent anywhere. The script (`assets/js/main.js`) only decides
+which `[data-outcome="…"]` block to reveal; the wording and links for
+each outcome live directly in `index.html` / `fr/index.html`, so the
+shared script works unchanged for both languages.
+
+**Trust badges**: "Registered entity in France", "GDPR compliant", and
+"Secure payments via Stripe" are factual claims once the legal
+placeholders above are filled in — don't publish them otherwise. The
+fourth badge reads "Expert visa application guidance", not a success
+guarantee: the site's own FAQ states no visa or admission outcome is
+guaranteed, and a "100%" claim for a paid consulting service is a real
+deceptive-advertising exposure (and a self-contradiction against that
+FAQ answer).
+
+**Languages**: every English page has a French twin under `fr/` with the
+matching path (e.g. `resources/campus-france.html` ↔
+`fr/resources/campus-france.html`). They're independent, hand-translated
+files sharing the same `assets/` — there's no i18n framework or build
+step. Each page links to its twin via the EN/FR toggle in the header.
+Edit both when copy, prices, or FAQ content changes — nothing keeps them
+in sync automatically.
 
 **Illustrations**: the hero, service icons, section divider, step icons,
-testimonial avatars, and CTA accent are all hand-authored inline SVG
-(`docs/index.html` / `docs/fr/index.html` directly, no separate image
-files) — crisp at any size, on-brand by construction, zero extra requests.
-Drop real photography into `docs/assets/img/` and reference it with an
-`<img>` tag if you'd rather use photos for the hero or testimonials later.
+testimonial avatars, and CTA accent are all hand-authored inline SVG,
+directly in each page's HTML — no separate image files, crisp at any
+size, on-brand by construction, zero extra requests. Drop real
+photography into `docs/assets/img/` and reference it with an `<img>` tag
+if you'd rather use photos for the hero or testimonials later.
 
-**Edit content**: everything else (copy, prices, testimonials, FAQ) is
-plain markup in `docs/index.html` / `docs/fr/index.html` — no build step,
-edit and push.
+**Edit content**: everything else (copy, prices, testimonials, FAQ,
+guides) is plain markup in the files listed above — no build step, edit
+and push.
 
 ## Deployment (Vercel)
 
