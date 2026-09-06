@@ -123,6 +123,16 @@ If you do act as guarantor yourself, that's a materially different (and
 financially exposed) claim; update the copy in both `#services` and
 `#pricing` on both language pages to say so explicitly before publishing.
 
+**Brand voice**: direct, outcome-focused, "shortcut through French
+bureaucracy" positioning — active verbs (fast-track, unlock, bypass,
+master, secure), local-advantage framing ("on the ground in France"),
+minimal corporate jargon. Two pricing cards (SOP/CV, Concierge) state a
+**"Turnaround in 48–72h"** — that's a concrete, testable delivery promise,
+not marketing color. Only keep it on a service if you actually deliver
+within that window; remove it (search `48–72h` / `48 à 72h`) or adjust
+the number otherwise, since an unmet public turnaround claim is a real
+customer-trust and (depending on jurisdiction) consumer-protection risk.
+
 **Currency toggle (EUR/INR)**: every price carries `data-eur` and
 `data-inr` attributes; the EUR/INR buttons in the pricing section swap
 which one displays, with a stated reference rate. This is display only —
