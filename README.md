@@ -78,21 +78,50 @@ branch" → Branch: `main`, folder `/docs` → Save. The site is then served at
 `https://<owner>.github.io/StudyInFrance.io/` (or your custom domain, once
 attached under the same Pages settings).
 
-**Before publishing, fill in three placeholders** (search each string
+**Before publishing, fill in four placeholders** (search each string
 across `docs/`, they appear on every page):
 
-- `REPLACE_WITH_YOUR_LINK` — Stripe Payment Link `href`s (5 per home page:
-  4 info-product packs + coaching). Stripe Dashboard → Payment Links →
+- `REPLACE_WITH_YOUR_LINK` — Stripe Payment Link `href`s (7 per home page:
+  6 à la carte services + 1 bundle). Stripe Dashboard → Payment Links →
   Create link.
 - `wa.me/33600000000` — the floating WhatsApp button and the Contact
-  page's WhatsApp link. Replace with your real WhatsApp Business number,
-  international format, digits only (e.g. `wa.me/919876543210`).
+  page's WhatsApp/free-consultation links. Replace with your real
+  WhatsApp Business number, international format, digits only (e.g.
+  `wa.me/919876543210`).
+- `partners@studyinfrance.io` — the Contact page's "Schools &
+  Institutions" channel, for B2B referral partnerships with French
+  private/business schools. Replace with your real inbox.
 - `SIRET [YOUR SIRET NUMBER]` / `[Legal entity name]` / `[Street
   address]` — the trust badge footnote (footer, every page) and the
   Contact page's legal info card. These are placeholders on purpose: do
   not publish invented values — fill in your real registration once you
   have one. Presenting a fabricated SIRET or "registered in France" claim
   without an actual entity is a legal exposure, not a copy detail.
+
+**Business model**: three revenue streams —
+
+1. **À la carte services** (6, priced in `#pricing`): SOP / Motivation
+   Letter / CV (€100), Campus France + VFS File (€129), Concierge /
+   Appointment Booking (€49), CAF File Assistance (€59), Housing
+   Guarantee Pack (€269), Job-Search Permit Coaching / APS (€99).
+2. **Consulting & bundle**: the initial 1-on-1 consultation is free (a
+   lead qualifier, not a Stripe product — see the `free-consult-banner`
+   above the pricing grid and the Contact page's first channel), and the
+   Complete Package bundle (Admission + Visa + Housing, €449) is priced
+   below the sum of its three parts. The €449 bundle price is this
+   project's placeholder, not a confirmed figure — adjust it in both
+   `index.html` and `fr/index.html` (`.price-amount` on the featured
+   `.price-card`) if you set a different one.
+3. **B2B referral commissions**: paid by French private/business schools
+   for qualified Indian applicant referrals — not sold on-site, surfaced
+   only as a low-key "Schools & Institutions" contact channel (see
+   above).
+
+The Housing Guarantee Pack is worded as rental-file and guarantor-scheme
+(e.g. Visale) support — it does not say you personally act as guarantor.
+If you do act as guarantor yourself, that's a materially different (and
+financially exposed) claim; update the copy in both `#services` and
+`#pricing` on both language pages to say so explicitly before publishing.
 
 **Currency toggle (EUR/INR)**: every price carries `data-eur` and
 `data-inr` attributes; the EUR/INR buttons in the pricing section swap
